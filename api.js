@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Banco simples em memória
+
 const tips = [
     {
         id: "1",
@@ -24,12 +24,10 @@ const tips = [
     }
 ];
 
-// ➤ Rota principal usada no seu app Android (Compose)
 app.get("/tips", (req, res) => {
     res.json({ data: tips });
 });
 
-// ➤ Rota para detalhe (opcional)
 app.get("/tips/:id", (req, res) => {
     const tip = tips.find(t => t.id === req.params.id);
     if (!tip) return res.status(404).json({ error: "Tip not found" });
@@ -37,7 +35,6 @@ app.get("/tips/:id", (req, res) => {
     res.json({ data: tip });
 });
 
-// ➤ Teste rápido
 app.get("/", (req, res) => {
     res.send("API de Dicas Sustentáveis está funcionando!");
 });
